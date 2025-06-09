@@ -1,0 +1,34 @@
+ T5 Citation Normalization Project – Script Descriptions & Execution Order
+
+1. batch_tagger.py
+   Runs the trained NER model on raw citation text files to predict token-level tags.
+
+2. extract_fields.py
+   Processes the token-tag output from batch_tagger.py and extracts structured fields like court, date, law, etc.
+
+3. clean_data_url.py
+   Cleans structured citation data by removing noisy patterns such as file paths, URLs, or irrelevant tokens.
+
+4. generate_t5_data_from_structured_fields.py
+   Creates input-output pairs from structured citation fields for training the T5 model.
+
+5. download_t5_base.py
+   Downloads and sets up the pretrained T5-base model for fine-tuning.
+
+6. train_t5_base_with_cleandata.py
+   Trains the T5 model using cleaned and structured training data for normalization tasks.
+
+7. evaluate_t5_model.py
+   Evaluates a trained T5 model on a test dataset, reporting similarity and exact match metrics.
+
+optional (depends on input format). csv_to_jsonl.py
+   Converts training pairs stored in CSV to JSONL format for use with Hugging Face Trainer.
+
+optional (for synthetic evaluation only). generate_synthetic_test_data.py
+   Generates synthetic structured test data to validate model performance on known patterns.
+
+alternative to step 6. train_t5_base.py
+   Alternative training script for T5 model — use this if not using the cleaned version.
+
+optional (for generating normalized outputs). run_t5_for_ground_truth.py
+   Runs a trained T5 model on raw or structured inputs to generate normalized outputs for evaluation or gold data creation.
